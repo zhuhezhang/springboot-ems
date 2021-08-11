@@ -1,0 +1,55 @@
+CREATE DATABASE ems;
+
+USE ems;
+
+
+
+DROP TABLE IF EXISTS departments;
+
+CREATE TABLE departments
+(
+    id     INT PRIMARY KEY,
+    `name` VARCHAR(20) NOT NULL
+);
+
+
+INSERT INTO departments(id, `name`)
+VALUES (101, '教学部'),
+       (102, '市场部'),
+       (103, '教研部'),
+       (104, '运营部'),
+       (105, '后勤部');
+
+
+
+DROP TABLE IF EXISTS employees;
+
+CREATE TABLE employees
+(
+    id         INT PRIMARY KEY AUTO_INCREMENT,
+    `name`     VARCHAR(50) NOT NULL,
+    email      VARCHAR(50),
+    gender     INT         NOT NULL,
+    birthday   DATETIME    NOT NULL,
+    department INT         NOT NULL
+);
+
+INSERT INTO employees (`name`, email, gender, birthday, department)
+VALUES ('张三', '1234567@qq.com', 1, NOW(), 101),
+       ('李四', '1234567@163.com', 0, NOW(), 102),
+       ('王五', '4234335@qq.com', 1, NOW(), 103),
+       ('三张', '4343343@qq.com', 0, NOW(), 104),
+       ('四李', '6768554@qq.com', 1, NOW(), 105);
+
+
+
+DROP TABLE IF EXISTS admins;
+
+CREATE TABLE admins
+(
+    `name`   VARCHAR(50) PRIMARY KEY,
+    password VARCHAR(50) NOT NULL
+);
+
+INSERT INTO admins(`name`, password)
+VALUES ('admin', '123456');
