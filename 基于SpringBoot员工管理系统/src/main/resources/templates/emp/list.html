@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Manage employees info</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+<div th:replace="~{commons/commons::topbar}"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="~{commons/commons::siderbar(active='list.html')}"></div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h2>Employees information</h2>
+            <h2><a class="btn btn-sm btn-success" th:href="@{/emp/add.html}">add</a></h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>email</th>
+                        <th>gender</th>
+                        <th>department</th>
+                        <th>date</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="emp,cStat:${emps}">
+                        <td th:text="${emp.getId()}"></td>
+                        <td th:text="${emp.getName()}"></td>
+                        <td th:text="${emp.getEmail()}"></td>
+                        <td th:text="${emp.getGender()==0?'女':'男'}"></td>
+                        <td th:text="${deptNames.get(cStat.index)}"></td>
+                        <td th:text="${#dates.format(emp.getBirthday(),'yyyy-MM-dd')}"></td>
+                        <td>
+                            <a class="btn btn-sm btn-primary" th:href="@{/edit/{id}(id=${emp.getId()})}">edit</a>
+                            <a class="btn btn-sm btn-success" th:href="@{/delete/{id}(id=${emp.getId()})}">delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="js/jquery-3.2.1.slim.min.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<!-- Icons -->
+<script type="text/javascript" src="js/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+
+<!-- Graphs -->
+<script type="text/javascript" src="js/Chart.min.js"></script>
+<script>
+    let tr = document.getElementsByTagName("tr");
+    for (let i = 0; i < tr.length; i++) {
+        tr.item(i).style.textAlign = "center";
+    }
+</script>
+</body>
+</html>

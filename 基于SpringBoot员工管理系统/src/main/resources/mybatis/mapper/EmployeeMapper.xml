@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.zhz.mapper.EmployeeMapper">
+
+    <!--查询全部员工信息-->
+    <select id="getAllEmployees" resultType="Employee">
+        select *
+        from employees
+    </select>
+
+    <!--通过ID查询员工-->
+    <select id="getEmployeeById" resultType="Employee">
+        select *
+        from employees
+        where id = #{id}
+    </select>
+
+    <!--通过ID删除员工-->
+    <delete id="deleteEmployee" parameterType="int">
+        delete
+        from employees
+        where id = #{id};
+    </delete>
+
+    <!--增加员工-->
+    <insert id="addEmployee" parameterType="Employee">
+        insert into employees(id, `name`, email, gender, birthday, department)
+        values (#{id}, #{name}, #{email}, #{gender}, #{birthday}, #{department});
+    </insert>
+
+    <!--修改员工-->
+    <update id="updateEmpById" parameterType="Employee">
+        update employees
+        set `name`=#{name},
+            email=#{email},
+            gender=#{gender},
+            birthday=#{birthday},
+            department=#{department}
+        where id = #{id}
+    </update>
+
+</mapper>

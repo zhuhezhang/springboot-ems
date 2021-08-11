@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.zhz.mapper.DepartmentMapper">
+
+    <!--查询全部部门-->
+    <select id="getAllDepartments" resultType="Department">
+        select *
+        from departments
+    </select>
+
+    <!--通过ID的到部门名称-->
+    <select id="getNameById" parameterType="int" resultType="Department">
+        select *
+        from departments
+        where id = #{id}
+    </select>
+
+</mapper>

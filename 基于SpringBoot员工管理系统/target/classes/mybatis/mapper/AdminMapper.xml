@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.zhz.mapper.AdminMapper">
+
+    <!--查询管理员账号密码是否正确-->
+    <select id="queryAdmin" parameterType="Admin" resultType="Admin">
+        select *
+        from admins
+        where `name` = #{name}
+          and password = #{password}
+    </select>
+
+</mapper>
